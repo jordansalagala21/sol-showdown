@@ -1,6 +1,7 @@
 import { site } from "@/lib/site";
 import SectionHead from "./SectionHead";
 import Tbd from "./Tbd";
+import Contacts from "./Contacts";
 
 type Faq = { q: string; a: React.ReactNode };
 
@@ -13,7 +14,7 @@ const faqs: Faq[] = [
           Yes. The Sol Showdown is organized by the Brodsky Institute and supported by D.A.IS. Codes came through your
           club or program, and you'll meet the Sol team in person on Nov 3.
         </p>
-        <p><Tbd>Sol is not affiliated with Rider University.</Tbd> Unsure about a message? Contact Lakshitha directly.</p>
+        <p><Tbd>Sol is not affiliated with Rider University.</Tbd> Unsure about a message? Email <Contacts /> directly.</p>
       </>
     ),
   },
@@ -26,7 +27,7 @@ const faqs: Faq[] = [
     q: "Can I come without submitting?",
     a: <p>Yes. Come for the food, pitches and costume raffle. Just <a href={site.registerUrl}>register</a> so we can plan.</p>,
   },
-  { q: "How do I get a code?", a: <p><Tbd>Email Lakshitha or use the request form and we'll send you one.</Tbd></p> },
+  { q: "How do I get a code?", a: <p>Email <Contacts />, and we'll send you one within a day.</p> },
 ];
 
 const half = Math.ceil(faqs.length / 2);

@@ -1,5 +1,6 @@
 import SectionHead from "./SectionHead";
 import Tbd from "./Tbd";
+import Contacts from "./Contacts";
 
 const steps = [
   { state: "done", date: "Oct 19", what: "Codes go out", body: <>To participating clubs and programs.</> },
@@ -29,7 +30,7 @@ export default function Timeline() {
             <div className="groups">
               {["Clubs", "EOP", "Bonner", "Brodsky fellows", "Greek life"].map((g) => <span key={g}>{g}</span>)}
             </div>
-            <p>Not in one of these groups? <Tbd>Email Lakshitha or use the request form, and we'll send one within a day.</Tbd></p>
+            <p>Not in one of these groups? Email <Contacts />, and we'll send one within a day.</p>
           </div>
         </div>
       </div>

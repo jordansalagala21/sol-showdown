@@ -17,8 +17,12 @@ export default function Footer() {
           <div>
             <h4>Questions</h4>
             <p>
-              Lakshitha, event lead<br />
-              <a href={`mailto:${site.contactEmail}`}><Tbd>{site.contactEmail}</Tbd></a>
+              {site.contacts.map((c) => (
+                <span key={c.email}>
+                  {c.name}<br />
+                  <a href={`mailto:${c.email}`}>{c.email}</a><br />
+                </span>
+              ))}
             </p>
             <h4>Follow Sol</h4>
             <p>

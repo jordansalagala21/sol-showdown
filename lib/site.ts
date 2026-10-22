@@ -4,11 +4,12 @@ export const site = {
   solUrl: "https://heysol.app",
   registerUrl: "#register-link-goes-here",
   submissionFormUrl: "#submission-form-link",
-  guideUrl: "#guide-link",
-  templateUrl: "#template-link",
   instagramUrl: "#instagram-link",
   instagramHandle: "@sol-instagram-handle", // TBD
-  contactEmail: "email@rider.edu", // TBD: Lakshitha's address
+  contacts: [
+    { name: "Lakshitha", email: "govindal@rider.edu" },
+    { name: "Jordan", email: "salagalaj@rider.edu" },
+  ],
   // Countdown target. Exact time on Mon, Nov 2 is still TBD.
   deadline: "2026-11-02T23:59:00",
 };

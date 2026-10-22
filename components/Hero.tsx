@@ -2,6 +2,7 @@ import { site, ext } from "@/lib/site";
 import Countdown from "./Countdown";
 import Logos from "./Logos";
 import SolOrb from "./SolOrb";
+import HalloweenDecor from "./HalloweenDecor";
 
 // Inline delay for the staggered entrance animation (see .rise in globals.css)
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
@@ -11,6 +12,7 @@ export default function Hero() {
     <section className="hero">
       <SolOrb />
       <span className="hero-blob" aria-hidden="true" />
+      <HalloweenDecor />
       <div className="wrap">
         <h1>
           <span className="rise" style={d(0)}>Sol</span>

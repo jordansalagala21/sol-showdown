@@ -21,8 +21,9 @@ export default function Challenge() {
   return (
     <section className="block" id="challenge">
       <div className="wrap">
-        <SectionHead kicker="The challenge" title="Three parts, one form.">
-          Find the problems, suggest a fix, and show us what it looks like. No coding required.
+        <SectionHead kicker="The challenge" title="Find what's not working in Sol, then fix it.">
+          Use Sol for two weeks and find where it falls short: bugs, confusing moments, missing features or replies
+          that don't help. Then propose improvements the Sol team could build into the app. No coding required.
         </SectionHead>
         <div className="tabs" role="tablist" aria-label="Challenge details">
           {tabs.map((t) => (

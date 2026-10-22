@@ -1,10 +1,16 @@
 import { site } from "@/lib/site";
 import FlipCard, { FlipHint } from "./FlipCard";
-import Tbd from "./Tbd";
 
 export default function Submit({ showExamples }: { showExamples?: () => void }) {
   return (
     <>
+      <div className="required">
+        <span className="req-badge">Required</span>
+        <p>
+          Every entry must include <strong>all three deliverables</strong>, submitted together through one form by{" "}
+          <strong>Mon, Nov 2</strong>.
+        </p>
+      </div>
       <div className="grid-3">
         <FlipCard
           frontClassName="card flip-sum"
@@ -12,17 +18,17 @@ export default function Submit({ showExamples }: { showExamples?: () => void }) 
           front={
             <>
               <div className="head"><span className="num">1</span><span className="tag">Weakness report</span></div>
-              <h3>5+ issues you found</h3>
-              <p>Log what breaks, confuses you or falls short while you use Sol.</p>
+              <h3>Find 5+ problems in Sol</h3>
+              <p>Bugs, confusing moments, missing features or replies that don't help. Document each one you find.</p>
               <FlipHint />
             </>
           }
           back={
             <>
-              <span className="back-kicker">Weakness report</span>
-              <h4>For each issue, include:</h4>
+              <span className="back-kicker">Deliverable 1 of 3</span>
+              <h4>For each problem, include:</h4>
               <ul>
-                <li>What you tried and what happened</li>
+                <li>What you tried in Sol and what happened</li>
                 <li>Why it matters to students</li>
                 <li>Severity: low, medium or high</li>
                 <li>A screenshot, if you can</li>
@@ -35,19 +41,20 @@ export default function Submit({ showExamples }: { showExamples?: () => void }) 
           backClassName="flip-dark"
           front={
             <>
-              <div className="head"><span className="num">2</span><span className="tag">Proposal</span></div>
-              <h3>1–2 ideas to fix it</h3>
-              <p>Pick the problems that matter most to students and propose a fix.</p>
+              <div className="head"><span className="num">2</span><span className="tag">Improvement proposal</span></div>
+              <h3>Propose 1–2 fixes for Sol</h3>
+              <p>Improvements the Sol team could realistically build into the app, tied to problems from your report.</p>
               <FlipHint />
             </>
           }
           back={
             <>
-              <span className="back-kicker">Proposal</span>
-              <h4>For each idea, include:</h4>
+              <span className="back-kicker">Deliverable 2 of 3</span>
+              <h4>For each improvement, include:</h4>
               <ul>
-                <li>The student problem it solves</li>
-                <li>How it works</li>
+                <li>Which problem from your report it fixes</li>
+                <li>How it would work inside Sol</li>
+                <li>Who it helps and why</li>
                 <li>How we'd know it's working</li>
               </ul>
             </>
@@ -59,14 +66,14 @@ export default function Submit({ showExamples }: { showExamples?: () => void }) 
           front={
             <>
               <div className="head"><span className="num">3</span><span className="tag">Mockup or prototype</span></div>
-              <h3>Show us what it looks like</h3>
-              <p>Any level of polish works. Code is welcome, not required.</p>
+              <h3>Show your fix inside Sol</h3>
+              <p>A visual of how your improvement would look and work in the Sol app. Any level of polish works.</p>
               <FlipHint />
             </>
           }
           back={
             <>
-              <span className="back-kicker">Mockup or prototype</span>
+              <span className="back-kicker">Deliverable 3 of 3</span>
               <h4>Any of these count:</h4>
               <ul>
                 <li>A hand sketch</li>
@@ -81,8 +88,6 @@ export default function Submit({ showExamples }: { showExamples?: () => void }) 
       </div>
       <div className="resource-row">
         <a className="btn btn-pink" href={site.submissionFormUrl}>open the submission form</a>
-        <a className="resource" href={site.guideUrl}><Tbd>"What to look for" guide</Tbd><span className="arrow">→</span></a>
-        <a className="resource" href={site.templateUrl}><Tbd>Weakness log template</Tbd><span className="arrow">→</span></a>
       </div>
     </>
   );

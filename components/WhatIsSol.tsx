@@ -1,5 +1,4 @@
 import SectionHead from "./SectionHead";
-import Tbd from "./Tbd";
 
 export default function WhatIsSol() {
   return (
@@ -47,12 +46,7 @@ export default function WhatIsSol() {
                 </span>
                 <div>
                   <h4>Your data stays yours</h4>
-                  {/* <p>
-                    <Tbd>
-                      Sol doesn't take or sell student data. (Final wording from
-                      Amber.)
-                    </Tbd>
-                  </p> */}
+                  <p>Sol doesn't take or sell student data.</p>
                 </div>
               </div>
               <div className="trust-item">
