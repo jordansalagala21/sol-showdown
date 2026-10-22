@@ -1,25 +1,34 @@
 import { site, ext } from "@/lib/site";
 import Countdown from "./Countdown";
 import Logos from "./Logos";
+import SolOrb from "./SolOrb";
+
+// Inline delay for the staggered entrance animation (see .rise in globals.css)
+const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 export default function Hero() {
   return (
     <section className="hero">
+      <SolOrb />
+      <span className="hero-blob" aria-hidden="true" />
       <div className="wrap">
         <h1>
-          Sol<span className="grad">Showdown</span>
+          <span className="rise" style={d(0)}>Sol</span>
+          <span className="grad rise" style={d(120)}>Showdown</span>
         </h1>
         <div className="steps" aria-label="Use Sol, find what's broken, pitch a fix">
-          <span>Use Sol for two weeks</span><i>→</i>
-          <span>Find what's broken</span><i>→</i>
-          <span>Pitch a fix</span>
+          <span className="rise" style={d(320)}>Use Sol for two weeks</span>
+          <i className="rise" style={d(380)}>→</i>
+          <span className="rise" style={d(440)}>Find what's broken</span>
+          <i className="rise" style={d(500)}>→</i>
+          <span className="rise" style={d(560)}>Pitch a fix</span>
         </div>
-        <div className="cta-row">
-          <a className="btn btn-pink" href={site.solUrl} {...ext}>try sol</a>
+        <div className="cta-row rise" style={d(680)}>
+          <a className="btn btn-pink lg" href={site.solUrl} {...ext}>try sol</a>
           <a className="btn btn-ghost lg" href={site.registerUrl}>register</a>
         </div>
 
-        <div className="ticket">
+        <div className="ticket rise" style={d(820)}>
           <div>
             <span className="lbl">Submissions due</span>
             <span className="v">Mon, Nov 2<small>Through the submission form</small></span>
@@ -38,7 +47,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="organizers">
+        <div className="organizers rise" style={d(960)}>
           <p>
             Organized by the <strong>Brodsky Institute</strong>, supported by <strong>D.A.IS</strong>
           </p>

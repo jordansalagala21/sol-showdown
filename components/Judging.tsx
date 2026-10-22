@@ -1,35 +1,37 @@
+import SectionHead from "./SectionHead";
 import Tbd from "./Tbd";
 
 const rubric = [
-  { name: "Student impact", pts: 30, desc: "Does it solve a real problem students have?" },
-  { name: "Quality of weakness findings", pts: 20, desc: "Specific, reproducible and clearly explained" },
-  { name: "Feasibility", pts: 20, desc: "Could the Sol team realistically build it?" },
-  { name: "Clarity of design", pts: 15, desc: "Can we tell how it works from your mockup?" },
-  { name: "Pitch", pts: 15, desc: "Clear, convincing and on time (finalists only)" },
+  { name: "Student impact", pts: 30 },
+  { name: "Quality of weakness findings", pts: 20 },
+  { name: "Feasibility", pts: 20 },
+  { name: "Clarity of design", pts: 15 },
+  { name: "Pitch (finalists)", pts: 15 },
 ];
 
 export default function Judging() {
   return (
     <section className="block" id="judging">
       <div className="wrap">
-        <div className="sec-head">
-          <span className="sec-kicker">How judging works</span>
-          <h2>Scored out of 100.</h2>
-          <p>Ties go to the entry with the higher Student impact score.</p>
-        </div>
-        <div className="judge-grid">
+        <SectionHead kicker="Judging and pitching" title="Scored out of 100.">
+          If there are more than about 10 entries, the top 6–8 are invited to pitch live. Every report still goes to
+          the Sol team.
+        </SectionHead>
+        <div className="jp">
           <div className="card rubric">
+            <h3>The rubric</h3>
             {rubric.map((r) => (
               <div className="row" key={r.name}>
                 <span className="name">{r.name}</span>
                 <span className="pts">{r.pts}</span>
                 <span className="bar"><i style={{ width: `${(r.pts / 30) * 100}%` }} /></span>
-                <span className="desc">{r.desc}</span>
               </div>
             ))}
             <div className="total"><span>Total</span><span>100</span></div>
+            <p className="note">Ties go to the higher Student impact score.</p>
           </div>
-          <div>
+
+          <div className="stack">
             <div className="card">
               <h3>The judges</h3>
               <div className="judges">
@@ -38,11 +40,26 @@ export default function Judging() {
                 <div className="judge"><span className="avatar">F</span><div><b><Tbd>Name TBA</Tbd></b><span>Rider faculty</span></div></div>
               </div>
             </div>
-            <div className="card" style={{ marginTop: 20 }}>
-              <h3>From entry to finalist</h3>
-              <p>If there are more than about 10 entries, judges invite the top 6–8 to pitch live.</p>
-              <p className="muted">Every report still goes to the Sol team, so whatever you find gets read either way.</p>
+            <div className="stats">
+              <div className="stat pink"><div className="big">5<small>min</small></div><p>to pitch</p></div>
+              <div className="stat"><div className="big">2<small>min</small></div><p>of Q&amp;A</p></div>
             </div>
+          </div>
+
+          <div className="card pitch-list">
+            <h3>If you're a finalist</h3>
+            <h4>Before the event</h4>
+            <ul>
+              <li>You'll hear by <Tbd>Mon, Nov 2 at 10 PM, by email</Tbd></li>
+              <li>Slides: <Tbd>PDF or Google Slides, 16:9, up to 6</Tbd></li>
+              <li>Send them by <Tbd>Tue, Nov 3 at noon</Tbd></li>
+              <li>Judges read your submission first</li>
+            </ul>
+            <h4>Bring a backup</h4>
+            <ul>
+              <li>A screen recording of the problem</li>
+              <li>Your mockup saved offline, in case Sol is down</li>
+            </ul>
           </div>
         </div>
       </div>

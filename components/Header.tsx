@@ -9,7 +9,8 @@ export default function Header() {
           sol <small>showdown</small>
         </a>
         <nav className="links" aria-label="Sections">
-          <a href="#submit">What to submit</a>
+          <a href="#about">About Sol</a>
+          <a href="#challenge">The challenge</a>
           <a href="#judging">Judging</a>
           <a href="#event">Event night</a>
           <a href="#faq">FAQ</a>

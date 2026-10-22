@@ -1,34 +1,28 @@
+import Effects from "@/components/Effects";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import WhatIsSol from "@/components/WhatIsSol";
 import Timeline from "@/components/Timeline";
-import Submit from "@/components/Submit";
-import Rules from "@/components/Rules";
-import Examples from "@/components/Examples";
+import Challenge from "@/components/Challenge";
 import Judging from "@/components/Judging";
-import Pitch from "@/components/Pitch";
 import EventNight from "@/components/EventNight";
 import Prizes from "@/components/Prizes";
-import Raffle from "@/components/Raffle";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
+      <Effects />
       <Header />
       <main id="top">
         <Hero />
         <WhatIsSol />
         <Timeline />
-        <Submit />
-        <Rules />
-        <Examples />
+        <Challenge />
         <Judging />
-        <Pitch />
         <EventNight />
         <Prizes />
-        <Raffle />
         <Faq />
       </main>
       <Footer />
