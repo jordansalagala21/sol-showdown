@@ -20,6 +20,7 @@ uniform vec2 uMouse;
 uniform float uHover;
 uniform vec3 uRipple;
 uniform float uEnergy;
+uniform float uFlow; // swirl phase, integrated in JS so speed changes never jump
 uniform float uFade;
 
 float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
@@ -44,7 +45,7 @@ void main() {
   float r = max(uRadius, 1.0);
   vec2 q = (gl_FragCoord.xy - uCenter) / r;
   if (length(q) > 1.9) { gl_FragColor = vec4(0.0); return; }
-  float t = uTime * (0.35 + uEnergy * 0.6);
+  float t = uFlow;
 
   // Slightly tilted, slowly rocking frame
   float rot = -0.18 + 0.12 * sin(uTime * 0.35);
@@ -56,7 +57,7 @@ void main() {
   float n = 3.0 + 0.4 * sin(uTime * 0.5);
   float se = pow(pow(abs(qr.x), n) + pow(abs(qr.y), n), 1.0 / n);
   float edgeN = fbm(vec2(cos(ang), sin(ang)) * 1.1 + vec2(uTime * 0.15, -uTime * 0.1));
-  float rad = 1.0 + (edgeN - 0.5) * (0.09 + uEnergy * 0.1);
+  float rad = 1.0 + (edgeN - 0.5) * (0.09 + uEnergy * 0.05);
 
   // Bulge toward the pointer
   vec2 m = (uMouse - uCenter) / r;
@@ -143,7 +144,7 @@ export default function SolOrb() {
     gl.enableVertexAttribArray(aLoc);
     gl.vertexAttribPointer(aLoc, 2, gl.FLOAT, false, 0, 0);
     const U = Object.fromEntries(
-      ["uTime", "uCenter", "uRadius", "uMouse", "uHover", "uRipple", "uEnergy", "uFade"].map((n) => [n, gl.getUniformLocation(prog, n)])
+      ["uTime", "uFlow", "uCenter", "uRadius", "uMouse", "uHover", "uRipple", "uEnergy", "uFade"].map((n) => [n, gl.getUniformLocation(prog, n)])
     );
     gl.clearColor(0, 0, 0, 0);
 
@@ -173,12 +174,13 @@ export default function SolOrb() {
 
     // Live state shared between the frame loop and the pointer handlers
     let cx = W / 2, cy = startY, rad = 0, t = 0;
-    let mx = -9999, my = -9999, hasMouse = false, hover = 0, energy = 0;
+    let mx = -9999, my = -9999, hasMouse = false, hover = 0, energy = 0, flow = 0;
     let rx = 0, ry = 0, rStart = -100;
 
     const onMove = (e: PointerEvent) => {
       if (e.pointerType === "mouse") hasMouse = true;
-      if (mx > -9999) energy = Math.min(1.5, energy + Math.min(Math.hypot(e.clientX - mx, e.clientY - my), 80) * 0.004);
+      const nearOrb = Math.hypot(e.clientX - cx, e.clientY - cy) < rad * 2.6;
+      if (mx > -9999 && nearOrb) energy = Math.min(1, energy + Math.min(Math.hypot(e.clientX - mx, e.clientY - my), 60) * 0.003);
       mx = e.clientX;
       my = e.clientY;
     };
@@ -187,7 +189,7 @@ export default function SolOrb() {
       rx = e.clientX;
       ry = e.clientY;
       rStart = t;
-      energy = Math.min(1.5, energy + 0.8);
+      energy = Math.min(1, energy + 0.5);
     };
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerdown", onDown, { passive: true });
@@ -198,7 +200,9 @@ export default function SolOrb() {
     const frame = (now: number) => {
       raf = requestAnimationFrame(frame);
       if (document.hidden) return;
+      const prevT = t;
       t = (now - t0) / 1000;
+      const dt = Math.min(0.05, Math.max(0, t - prevT));
 
       // Scroll progress through the hero: 0 = resting behind title, 1 = landed in the header logo
       const heroH = hero?.offsetHeight ?? H;
@@ -223,9 +227,11 @@ export default function SolOrb() {
 
       const near = hasMouse && Math.hypot(mx - cx, my - cy) < rad * 2.6 ? 1 : 0;
       hover += (near * (1 - e) - hover) * 0.06;
-      energy *= 0.94;
+      energy *= Math.pow(0.94, dt * 60);
+      flow += dt * (0.35 + energy * 0.6);
 
       gl.uniform1f(U.uTime, t);
+      gl.uniform1f(U.uFlow, flow);
       gl.uniform2f(U.uCenter, cx * dpr, (H - cy) * dpr);
       gl.uniform1f(U.uRadius, rad * dpr);
       gl.uniform2f(U.uMouse, mx * dpr, (H - my) * dpr);

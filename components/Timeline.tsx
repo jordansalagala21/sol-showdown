@@ -10,7 +10,7 @@ const steps = [
 
 export default function Timeline() {
   return (
-    <section className="block" id="timeline">
+    <section className="block white" id="timeline">
       <div className="wrap">
         <SectionHead kicker="Timeline" title="Two weeks, start to finish." />
         <div className="timeline-wrap">

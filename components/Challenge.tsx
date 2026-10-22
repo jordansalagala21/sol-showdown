@@ -19,7 +19,7 @@ export default function Challenge() {
   const { Panel } = tabs.find((t) => t.id === active)!;
 
   return (
-    <section className="block white" id="challenge">
+    <section className="block" id="challenge">
       <div className="wrap">
         <SectionHead kicker="The challenge" title="Three parts, one form.">
           Find the problems, suggest a fix, and show us what it looks like. No coding required.

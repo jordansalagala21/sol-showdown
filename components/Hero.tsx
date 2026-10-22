@@ -41,6 +41,10 @@ export default function Hero() {
             <span className="lbl">Where</span>
             <span className="v">The Pub<small>Rider University</small></span>
           </div>
+          <a className="prize-cell" href="#prizes">
+            <span className="lbl">Prizes</span>
+            <span className="v">$250<small>$100 grand prize</small></span>
+          </a>
           <div>
             <span className="lbl">Time left to submit</span>
             <Countdown />

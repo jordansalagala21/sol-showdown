@@ -18,8 +18,8 @@ export default function Home() {
       <main id="top">
         <Hero />
         <WhatIsSol />
-        <Timeline />
         <Challenge />
+        <Timeline />
         <Judging />
         <EventNight />
         <Prizes />

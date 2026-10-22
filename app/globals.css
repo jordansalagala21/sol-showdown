@@ -99,11 +99,16 @@ nav.links a:hover { color: var(--magenta); }
 .steps i { font-style: normal; color: var(--magenta); }
 .hero .cta-row { justify-content: center; }
 
-.ticket { margin-top: 32px; width: 100%; max-width: 920px; display: grid; grid-template-columns: repeat(3, 1fr) 1.2fr; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 30px 60px -36px rgba(20,19,31,.3); text-align: left; overflow: hidden; }
-.ticket > div { padding: 18px 22px; border-right: 1.5px dashed var(--line); }
-.ticket > div:last-child { border-right: none; background: var(--ink); color: #fff; }
+.ticket { margin-top: 32px; width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(4, 1fr) 1.25fr; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 30px 60px -36px rgba(20,19,31,.3); text-align: left; overflow: hidden; }
+.ticket > * { padding: 18px 22px; border-right: 1.5px dashed var(--line); }
+.ticket > :last-child { border-right: none; background: var(--ink); color: #fff; }
+.prize-cell { display: block; background: var(--pink-soft); color: var(--ink); text-decoration: none; transition: background .2s ease; }
+.prize-cell:hover { background: #F8C9E6; }
+.prize-cell .lbl { color: var(--magenta-dark); }
+.prize-cell .v { color: var(--magenta-dark); }
+.prize-cell .v small { color: var(--ink-2); }
 .lbl { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.ticket > div:last-child .lbl { color: var(--pink-light); }
+.ticket > :last-child .lbl { color: var(--pink-light); }
 .ticket .v { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: -0.03em; line-height: 1.15; }
 .ticket .v small { display: block; font-family: var(--font-figtree); font-weight: 500; font-size: 13px; letter-spacing: 0; color: var(--muted); margin-top: 2px; }
 .count { display: flex; gap: 14px; }
@@ -140,13 +145,8 @@ section.white .card { background: var(--bg); }
 .video-cap h3 { font-size: 19px; }
 .video-cap span { font-size: 14px; color: rgba(255,255,255,.65); white-space: nowrap; }
 .about-side { display: flex; flex-direction: column; gap: 16px; }
-.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.compare div { padding: 10px 12px; border-radius: 12px; font-size: 14px; line-height: 1.4; }
-.compare .them { background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
-section.white .compare .them { background: var(--surface); }
-.compare .us { background: var(--pink-soft); color: var(--ink); }
-.compare strong { display: block; font-family: var(--display); font-size: 13px; margin-bottom: 2px; }
-.trust-list { display: grid; gap: 14px; }
+.about-side > .trust-list { flex: 1; align-content: center; gap: 22px; }
+section.white .trust-list { display: grid; gap: 14px; }
 .trust-item { display: flex; gap: 12px; align-items: flex-start; }
 .trust-item h4 { font-size: 16px; letter-spacing: -0.02em; margin-bottom: 2px; }
 .trust-item p { font-size: 14px; color: var(--ink-2); margin: 0; }
@@ -174,7 +174,7 @@ section.white .compare .them { background: var(--surface); }
 .code-card p { font-size: 14px; margin: 0; color: var(--ink-2); }
 
 /* ---------- Tabs ---------- */
-.tabs { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; background: var(--bg); border: 1px solid var(--line); border-radius: 999px; margin-bottom: 20px; }
+.tabs { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; margin-bottom: 20px; }
 .tab { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--ink-2); background: transparent; border: none; padding: 9px 18px; border-radius: 999px; cursor: pointer; }
 .tab:hover { color: var(--magenta); }
 .tab[aria-selected="true"] { background: var(--ink); color: #fff; }
@@ -346,10 +346,9 @@ footer { background: var(--ink); color: #fff; padding: 48px 0 28px; }
   .prizes { grid-template-columns: repeat(2, 1fr); }
   .prize.first { grid-column: 1 / -1; }
   .ticket { grid-template-columns: 1fr 1fr; }
-  .ticket > div:nth-child(2) { border-right: none; }
-  .ticket > div:nth-child(-n+2) { border-bottom: 1.5px dashed var(--line); }
-  .ticket > div:nth-child(3) { border-right: none; grid-column: 1 / -1; border-bottom: 1.5px dashed var(--line); }
-  .ticket > div:last-child { grid-column: 1 / -1; }
+  .ticket > :nth-child(even) { border-right: none; }
+  .ticket > :nth-child(-n+4) { border-bottom: 1.5px dashed var(--line); }
+  .ticket > :last-child { grid-column: 1 / -1; }
   .foot { grid-template-columns: 1fr 1fr; }
   .foot > :first-child { grid-column: 1 / -1; }
 }
