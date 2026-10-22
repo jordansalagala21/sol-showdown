@@ -1,4 +1,4 @@
-import { site, ext } from "@/lib/site";
+import { site } from "@/lib/site";
 import Countdown from "./Countdown";
 import Logos from "./Logos";
 import SolOrb from "./SolOrb";
@@ -26,14 +26,14 @@ export default function Hero() {
           <span className="rise" style={d(560)}>Pitch a fix</span>
         </div>
         <div className="cta-row rise" style={d(680)}>
-          <a className="btn btn-pink lg" href={site.solUrl} {...ext}>try sol</a>
-          <a className="btn btn-ghost lg" href={site.registerUrl}>register</a>
+          <a className="btn btn-pink lg" href="#start">get started</a>
+          <a className="btn btn-ghost lg" href={site.registerUrl} target="_blank" rel="noopener">register</a>
         </div>
 
         <div className="ticket rise" style={d(820)}>
           <div>
             <span className="lbl">Submissions due</span>
-            <span className="v">Mon, Nov 2<small>Through the submission form</small></span>
+            <span className="v">Mon, Nov 2<small>By 6:00 PM</small></span>
           </div>
           <div>
             <span className="lbl">Showdown</span>

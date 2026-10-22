@@ -3,12 +3,12 @@ import SectionHead from "./SectionHead";
 import Tbd from "./Tbd";
 
 const schedule = [
-  { time: "6:00", title: "Check-in and food", note: "Enter the costume raffle" },
-  { time: "6:15", title: "Welcome and Sol overview", note: "Amber" },
-  { time: "6:30", title: "The fellowship", note: "Brodsky Institute" },
-  { time: "6:40", title: "Finalist pitches", note: "5 min + 2 min Q&A each" },
-  { time: "7:30", title: "Judges deliberate", note: "Raffle drawing, networking" },
-  { time: "7:45", title: "Winners announced", note: "Closing and group photo" },
+  { title: "Check-in and food", note: "Enter the costume raffle" },
+  { title: "Welcome and Sol overview", note: "Amber" },
+  { title: "The fellowship", note: "Brodsky Institute" },
+  { title: "Finalist pitches", note: "5 min + 2 min Q&A each" },
+  { title: "Judges deliberate", note: "Raffle drawing, networking" },
+  { title: "Winners announced", note: "Closing and group photo" },
 ];
 
 export default function EventNight() {
@@ -21,9 +21,9 @@ export default function EventNight() {
         <div className="event">
           <div className="card">
             <div className="sched">
-              {schedule.map((s) => (
-                <div className="slot" key={s.time}>
-                  <time>{s.time}</time>
+              {schedule.map((s, i) => (
+                <div className="slot" key={s.title}>
+                  <span className="num">{i + 1}</span>
                   <div><h4>{s.title}</h4><p>{s.note}</p></div>
                 </div>
               ))}
@@ -35,7 +35,7 @@ export default function EventNight() {
                 </span>
                 <div><b>The Pub</b><br /><span className="muted small">Doors open 6:00 PM</span></div>
               </div>
-              <a className="btn btn-dark" href={site.registerUrl}>register to attend</a>
+              <a className="btn btn-dark" href={site.registerUrl} target="_blank" rel="noopener">register to attend</a>
             </div>
           </div>
 
@@ -47,8 +47,8 @@ export default function EventNight() {
             <h3>Come dressed up. Win something.</h3>
             <p>Costumes are optional. Show up in one and you're entered. Prize: <Tbd>TBA</Tbd></p>
             <div className="raffle-steps">
-              <div><b>6:00</b><span>Enter at check-in</span></div>
-              <div><b>~7:30</b><span>Winners drawn</span></div>
+              <div><b>Enter</b><span>At check-in</span></div>
+              <div><b>Draw</b><span>Later in the night</span></div>
               <div><b>Rules</b><span><Tbd>Campus-appropriate. No full-face masks or prop weapons.</Tbd></span></div>
             </div>
           </div>

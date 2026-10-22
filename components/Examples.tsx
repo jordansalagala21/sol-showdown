@@ -33,7 +33,7 @@ export default function Examples() {
                 </div>
               </div>
               <div className="mock-cap">
-                <span className="lvl">Hand sketch · 15 min</span>
+                <span className="lvl">Sketch photo on a slide · 15 min</span>
                 <h4>Deadline memory</h4>
                 <FlipHint />
               </div>
@@ -64,7 +64,7 @@ export default function Examples() {
                 </div>
               </div>
               <div className="mock-cap">
-                <span className="lvl">Canva / Figma · 1 hr</span>
+                <span className="lvl">Canva / Figma slide · 1 hr</span>
                 <h4>Weekly recap</h4>
                 <FlipHint />
               </div>
@@ -92,7 +92,7 @@ export default function Examples() {
                 </div>
               </div>
               <div className="mock-cap">
-                <span className="lvl">AI-generated UI · 30 min</span>
+                <span className="lvl">AI-generated UI slide · 30 min</span>
                 <h4>Topic starters</h4>
                 <FlipHint />
               </div>
@@ -108,7 +108,7 @@ export default function Examples() {
 
         <div className="weak">
           <div className="weak-head">
-            <h4>Sample weakness entry</h4>
+            <h4>Sample weakness slide</h4>
             <span className="sev">Medium</span>
           </div>
           <dl>
@@ -119,11 +119,11 @@ export default function Examples() {
             <dt>Why it matters</dt>
             <dd>If Sol says it remembers but misses the one thing that matters this week, students stop trusting it.</dd>
             <dt>Screenshot</dt>
-            <dd>📎 wed-chat.png</dd>
+            <dd>🖼 Screenshot of the chat, placed right on the slide</dd>
           </dl>
         </div>
       </div>
-      <p className="sample-note">Made-up samples to show the format, not real entries. Judges score the idea, not your design skills.</p>
+      <p className="sample-note">Made-up samples, not real entries. Each one would sit on a slide in your presentation. Judges score the idea, not your design skills.</p>
     </>
   );
 }

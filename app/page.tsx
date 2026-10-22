@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import WhatIsSol from "@/components/WhatIsSol";
 import Timeline from "@/components/Timeline";
 import Challenge from "@/components/Challenge";
-import Judging from "@/components/Judging";
+import TakePart from "@/components/TakePart";
 import EventNight from "@/components/EventNight";
 import Prizes from "@/components/Prizes";
 import Faq from "@/components/Faq";
@@ -19,8 +19,8 @@ export default function Home() {
         <Hero />
         <WhatIsSol />
         <Challenge />
+        <TakePart />
         <Timeline />
-        <Judging />
         <EventNight />
         <Prizes />
         <Faq />

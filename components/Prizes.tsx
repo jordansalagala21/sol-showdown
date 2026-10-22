@@ -1,5 +1,4 @@
 import SectionHead from "./SectionHead";
-import Tbd from "./Tbd";
 import CountUp from "./CountUp";
 
 const runnersUp = [
@@ -34,9 +33,6 @@ export default function Prizes() {
             <p>For the idea that best reflects Sol's vision and values</p>
           </div>
         </div>
-        <p className="everyone">
-          Everyone who submits gets a <Tbd>certificate of participation</Tbd> and a thank-you from the Sol team.
-        </p>
       </div>
     </section>
   );

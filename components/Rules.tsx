@@ -20,9 +20,9 @@ export default function Rules() {
       <div className="card">
         <h3>The fine print</h3>
         <div className="rules">
-          <div className="rule"><h4>File formats</h4><p><Tbd>PDF, PNG, JPG, Figma or Canva links, up to 25 MB</Tbd></p></div>
+          <div className="rule"><h4>Format</h4><p>One presentation in PowerPoint, Google Slides or Canva, with all visuals on the slides</p></div>
           <div className="rule"><h4>AI tools for mockups</h4><p><Tbd>Allowed. Just tell us which tool you used.</Tbd></p></div>
-          <div className="rule"><h4>Solo or team</h4><p><Tbd>To be confirmed</Tbd></p></div>
+          <div className="rule"><h4>Solo or team</h4><p>Enter individually or as a team of up to 3</p></div>
           <div className="rule"><h4>Used Sol before Oct 19?</h4><p><Tbd>To be confirmed</Tbd></p></div>
         </div>
       </div>

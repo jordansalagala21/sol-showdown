@@ -7,7 +7,7 @@ const figtree = Figtree({ subsets: ["latin"], weight: ["400", "500", "600", "700
 const caveat = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-caveat" });
 
 const description =
-  "Use Sol for two weeks, find what's broken, pitch a fix. Submissions due Mon, Nov 2. Event Tue, Nov 3, 6:00 PM at the Pub.";
+  "Use Sol for two weeks, find what's broken, pitch a fix. Submissions due Mon, Nov 2 at 6:00 PM. Event Tue, Nov 3, 6:00 PM at the Pub.";
 
 export const metadata: Metadata = {
   title: "Sol Showdown",

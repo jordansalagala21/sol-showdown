@@ -1,6 +1,5 @@
 import { site, ext } from "@/lib/site";
 import Logos from "./Logos";
-import Tbd from "./Tbd";
 
 export default function Footer() {
   return (
@@ -8,10 +7,10 @@ export default function Footer() {
       <div className="wrap">
         <div className="foot">
           <div>
-            <h2>Submissions due Mon, Nov 2.</h2>
+            <h2>Submissions due Mon, Nov 2 at 6 PM.</h2>
             <div className="cta-row">
-              <a className="btn btn-pink" href={site.solUrl} {...ext}>try sol</a>
-              <a className="btn btn-ghost" href={site.registerUrl}>register</a>
+              <a className="btn btn-pink" href="#start">get started</a>
+              <a className="btn btn-ghost" href={site.registerUrl} target="_blank" rel="noopener">register</a>
             </div>
           </div>
           <div>
@@ -25,10 +24,18 @@ export default function Footer() {
               ))}
             </p>
             <h4>Follow Sol</h4>
-            <p>
-              <a href={site.instagramUrl} {...ext}><Tbd>{site.instagramHandle}</Tbd></a> ·{" "}
+            <div className="social">
+              <a className="ig-link" href={site.instagramUrl} {...ext} aria-label={`Sol on Instagram, ${site.instagramHandle}`}>
+                <svg className="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+                {site.instagramHandle}
+              </a>
+              <span className="dot" aria-hidden="true">·</span>
               <a href={site.solUrl} {...ext}>heysol.app</a>
-            </p>
+            </div>
           </div>
           <div>
             <h4>Organized by</h4>
@@ -37,7 +44,6 @@ export default function Footer() {
         </div>
         <div className="foot-bottom">
           <a className="brand" href="#top"><span className="orb" aria-hidden="true" />sol showdown</a>
-          <span><Tbd>Sol is an independent company and is not affiliated with Rider University.</Tbd></span>
         </div>
       </div>
     </footer>

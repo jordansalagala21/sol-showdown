@@ -20,12 +20,19 @@ const faqs: Faq[] = [
   },
   { q: "Do I need to know how to code?", a: <p>No. A hand sketch, a Canva screen or an AI-generated mockup all work.</p> },
   { q: "Can I use AI tools?", a: <p><Tbd>Yes, for mockups. Just tell us which tool you used.</Tbd></p> },
-  { q: "Can I enter as a team?", a: <p><Tbd>To be confirmed.</Tbd></p> },
-  { q: "Who owns my ideas?", a: <p><Tbd>Covered in the participant agreement, which you'll see before you submit.</Tbd></p> },
-  { q: "Can I share what I see in Sol?", a: <p><Tbd>Sol is in a private pilot, so please don't post screenshots publicly. The participant agreement has specifics.</Tbd></p> },
+  { q: "Can I participate alone or with a team?", a: <p>You can participate individually or as a team of up to 3 members.</p> },
+  {
+    q: "What format should my submission be in?",
+    a: (
+      <p>
+        Submit one presentation using PowerPoint, Google Slides or Canva. Your slides must include your Weakness
+        Report, Improvement Proposal and Mock-up or Prototype, along with any supporting screenshots or examples.
+      </p>
+    ),
+  },
   {
     q: "Can I come without submitting?",
-    a: <p>Yes. Come for the food, pitches and costume raffle. Just <a href={site.registerUrl}>register</a> so we can plan.</p>,
+    a: <p>Yes. Come for the food, pitches and costume raffle. Just <a href={site.registerUrl} target="_blank" rel="noopener">register</a> so we can plan.</p>,
   },
   { q: "How do I get a code?", a: <p>Email <Contacts />, and we'll send you one within a day.</p> },
 ];
