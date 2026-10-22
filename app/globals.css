@@ -527,14 +527,33 @@ header.top .brand .orb { transition: opacity .25s ease, scale .55s cubic-bezier(
 header.top .brand .orb.waiting { opacity: 0; scale: .2; }
 
 /* Flip cards (FlipCard.tsx): both faces share one grid cell, so the card is as
-   tall as its taller face. Hover flips on mouse devices; .flipped on tap/keyboard. */
+   tall as its taller face. Click/tap/Enter toggles .flipped. */
 .flip-card { display: grid; perspective: 1200px; cursor: pointer; border-radius: var(--radius); outline: none; }
 .flip-card:focus-visible { box-shadow: 0 0 0 3px var(--pink-soft), 0 0 0 5px var(--magenta); }
-.flip-inner { display: grid; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.3,1.35,.45,1); }
+.flip-inner { display: grid; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.3,1.35,.45,1), translate .25s ease; }
 .flip-face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius); }
 .flip-back { transform: rotateY(180deg); }
-@media (hover: hover) { .flip-card:hover .flip-inner { transform: rotateY(180deg); } }
-.flip-card.flipped .flip-inner, .flip-card:focus-visible .flip-inner { transform: rotateY(180deg); }
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+
+/* Attention shake: unflipped cards wiggle every few seconds, one after another,
+   until they've been flipped once (.seen). Uses the individual rotate/translate
+   properties so it doesn't fight the flip transform. Pauses on hover. */
+.flip-card:not(.seen) .flip-inner { animation: attention 4.5s ease-in-out 1.6s infinite; }
+.grid-3 > .flip-card:nth-child(2) .flip-inner, .examples > .flip-card:nth-child(2) .flip-inner { animation-delay: 2s; }
+.grid-3 > .flip-card:nth-child(3) .flip-inner, .examples > .flip-card:nth-child(3) .flip-inner { animation-delay: 2.4s; }
+.flip-card:hover .flip-inner, .flip-card.flipped .flip-inner { animation: none; }
+@keyframes attention {
+  0%, 13%, 100% { rotate: 0deg; translate: 0 0; }
+  2% { rotate: -2.2deg; translate: -3px -2px; }
+  4% { rotate: 2deg; translate: 3px -2px; }
+  6% { rotate: -1.6deg; translate: -2px -1px; }
+  8% { rotate: 1deg; translate: 1px 0; }
+  10% { rotate: -.4deg; translate: 0 0; }
+}
+/* Hovering an unflipped card: lift it and make the hint pop */
+.flip-card:not(.flipped):hover .flip-inner { translate: 0 -4px; }
+.flip-card:hover .flip-hint { color: var(--magenta-dark); }
+.flip-card:hover .flip-icon { animation-duration: 1s; }
 /* Lift + shadow while turning */
 .flip-card .flip-face { transition: box-shadow .4s ease; }
 .flip-card:hover .flip-face, .flip-card.flipped .flip-face { box-shadow: 0 28px 50px -30px rgba(20,19,31,.5); }
@@ -549,9 +568,10 @@ header.top .brand .orb.waiting { opacity: 0; scale: .2; }
 .flip-sum p { font-size: 15px; color: var(--ink-2); }
 .flip-hint { margin-top: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--magenta); }
 .flip-icon { display: inline-block; font-size: 15px; animation: spinHint 2.8s ease-in-out infinite; }
+.flip-hint { padding: 4px 10px 4px 8px; margin-left: -2px; border-radius: 999px; background: var(--pink-soft); align-self: flex-start; transition: color .2s ease; }
 @keyframes spinHint { 0%, 55% { transform: rotate(0); } 80%, 100% { transform: rotate(360deg); } }
 .h-tap { display: none; }
-@media (hover: none) { .h-hover { display: none; } .h-tap { display: inline; } }
+@media (hover: none) { .h-click { display: none; } .h-tap { display: inline; } }
 .mock-cap .flip-hint { margin-top: 6px; }
 
 /* Back: dark checklist face */
