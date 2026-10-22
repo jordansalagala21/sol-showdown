@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sol Showdown</title>
+<meta name="description" content="Use Sol for two weeks, find what's broken, pitch a fix. Submissions due Mon, Nov 2. Event Tue, Nov 3, 6:00 PM.">
+<!-- Social preview: swap in the flyer art once the site URL is set -->
+<meta property="og:title" content="Sol Showdown">
+<meta property="og:description" content="Use Sol for two weeks, find what's broken, pitch a fix. Tue, Nov 3, 6:00 PM.">
+<meta property="og:image" content="assets/flyer.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<!--
+  EDITING NOTES
+  Anything wrapped in <span class="tbd">…</span> is waiting on a decision or asset.
+  It shows with a dashed pink underline so it's easy to spot. Before launch,
+  search this file for class="tbd" and replace each one with the final text.
+-->
+<style>
+  :root {
+    --bg: #F7F7FB;
+    --surface: #FFFFFF;
+    --ink: #14131F;
+    --ink-2: #3B3A4C;
+    --muted: #5E5D72;
+    --line: #E5E4EE;
+    --magenta: #C6048E;
+    --magenta-dark: #A30075;
+    --pink-soft: #FBDDF0;
+    --teal: #0E7C74;
+    --amber: #B85C00;
+    --amber-soft: #FDEBD7;
+    --green-soft: #DDF3EC;
+    --radius: 20px;
+    --maxw: 1100px;
+    --orb: conic-gradient(from 210deg, #E8158E, #F5862A, #C9D836, #1FB59A, #3B6FE0, #A23BD9, #E8158E);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Figtree", system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: "Outfit", "Figtree", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin: 0;
+  }
+  p { margin: 0 0 1em; }
+  a { color: var(--magenta); }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  .tbd {
+    background: linear-gradient(transparent 62%, var(--pink-soft) 62%);
+    border-bottom: 1.5px dashed var(--magenta);
+    padding: 0 2px;
+  }
+
+  /* ---------- Header ---------- */
+  header.top {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(247,247,251,.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: "Outfit"; font-weight: 700; font-size: 22px; letter-spacing: -0.03em; }
+  .orb { width: 30px; height: 30px; border-radius: 50%; background: var(--orb); filter: saturate(1.05); flex: none; box-shadow: inset 0 0 6px rgba(255,255,255,.4); }
+  .brand small { font-family: "Figtree"; font-weight: 600; font-size: 14px; color: var(--muted); letter-spacing: 0; }
+  nav.links { display: flex; gap: 22px; }
+  nav.links a { color: var(--ink-2); text-decoration: none; font-weight: 600; font-size: 15px; }
+  nav.links a:hover { color: var(--magenta); }
+  .top-actions { display: flex; gap: 10px; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: "Outfit"; font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    padding: 12px 22px; border-radius: 999px; text-decoration: none;
+    border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .btn-pink { background: var(--magenta); color: #fff; padding: 16px 30px; font-size: 17px; }
+  .btn-pink:hover { background: var(--magenta-dark); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: #CFCEDB; }
+  .btn-ghost.lg { padding: 16px 26px; font-size: 17px; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; padding: 96px 0 80px; border-bottom: 1px solid var(--line); text-align: center; }
+  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; background: var(--orb); filter: blur(70px); opacity: .28; pointer-events: none; }
+  .hero::before { width: 520px; height: 520px; left: -180px; top: -160px; }
+  .hero::after { width: 420px; height: 420px; right: -140px; bottom: -120px; opacity: .2; }
+  .hero .wrap { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 26px; background: var(--surface); border: 1px solid var(--line); padding: 8px 16px; border-radius: 999px; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+  .hero h1 { font-size: clamp(60px, 12vw, 148px); letter-spacing: -0.05em; line-height: .92; }
+  .hero h1 .grad { display: block; background: var(--orb); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 140% 140%; }
+  .steps { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin: 34px 0 34px; font-family: "Outfit"; font-weight: 600; font-size: 20px; letter-spacing: -0.02em; }
+  .steps span { background: var(--surface); border: 1px solid var(--line); padding: 10px 20px; border-radius: 999px; }
+  .steps i { font-style: normal; color: var(--magenta); }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero .cta-row { justify-content: center; }
+
+  .ticket { margin-top: 56px; width: 100%; max-width: 900px; display: grid; grid-template-columns: repeat(3, 1fr) 1.2fr; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 30px 60px -36px rgba(20,19,31,.3); text-align: left; overflow: hidden; }
+  .ticket > div { padding: 22px 24px; border-right: 1.5px dashed var(--line); }
+  .ticket > div:last-child { border-right: none; background: var(--ink); color: #fff; }
+  .ticket .lbl { display: block; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .ticket .v { font-family: "Outfit"; font-weight: 700; font-size: 22px; letter-spacing: -0.03em; line-height: 1.15; }
+  .ticket .v small { display: block; font-family: "Figtree"; font-weight: 500; font-size: 14px; letter-spacing: 0; color: var(--muted); margin-top: 2px; }
+  .ticket > div:last-child .lbl { color: #F59BD2; }
+  .count { display: flex; gap: 14px; }
+  .count b { display: block; font-family: "Outfit"; font-size: 30px; letter-spacing: -0.04em; line-height: 1; }
+  .count span { font-size: 12px; color: rgba(255,255,255,.65); }
+
+  .organizers { margin-top: 40px; }
+  .organizers p { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+  .logo-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .hero .logo-row { justify-content: center; }
+  .logo-slot {
+    height: 44px; min-width: 110px; padding: 0 14px; border-radius: 10px;
+    border: 1.5px dashed #CFCEDB; display: grid; place-items: center;
+    font-size: 13px; font-weight: 700; color: var(--muted); background: var(--surface);
+  }
+  .logo-slot img { max-height: 32px; width: auto; }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: 96px 0; }
+  section.block.white { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .sec-head { max-width: 720px; margin-bottom: 48px; }
+  .sec-kicker { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--magenta); margin-bottom: 14px; display: block; }
+  .sec-head h2 { font-size: clamp(38px, 5.5vw, 60px); }
+  .sec-head p { font-size: 19px; color: var(--ink-2); margin-top: 18px; }
+
+  .num { width: 40px; height: 40px; border-radius: 50%; background: var(--pink-soft); color: var(--magenta); display: grid; place-items: center; font-family: "Outfit"; font-weight: 600; font-size: 17px; margin-bottom: 16px; flex: none; }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  section.white .card { background: var(--bg); }
+  .card h3 { font-size: 26px; margin-bottom: 12px; }
+  .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+  .card ul { padding-left: 20px; margin: 0 0 1em; }
+  .card li { margin-bottom: 6px; }
+  .muted { color: var(--muted); }
+  .small { font-size: 15px; }
+
+  /* What is Sol */
+  .sol-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: stretch; }
+  .video-slot {
+    border-radius: var(--radius); background: var(--ink); color: #fff; min-height: 320px;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; position: relative; overflow: hidden;
+  }
+  .video-slot::before { content: ""; position: absolute; width: 360px; height: 360px; right: -80px; top: -100px; border-radius: 50%; background: var(--orb); opacity: .55; filter: blur(30px); }
+  .video-slot > * { position: relative; }
+  .play { width: 64px; height: 64px; border-radius: 50%; background: #fff; display: grid; place-items: center; margin-bottom: 18px; }
+  .play::after { content: ""; border-left: 18px solid var(--ink); border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px; }
+  .video-slot h3 { font-size: 28px; margin-bottom: 6px; }
+  .video-slot p { color: rgba(255,255,255,.75); margin: 0; font-size: 15px; }
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+  .compare div { padding: 16px; border-radius: 14px; font-size: 15px; }
+  .compare .them { background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
+  .compare .us { background: var(--pink-soft); color: var(--ink); }
+  .compare strong { display: block; font-family: "Outfit"; font-size: 15px; margin-bottom: 4px; }
+
+  .trust { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .trust .card { display: flex; gap: 16px; }
+  .icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex: none; background: var(--green-soft); color: var(--teal); }
+  .icon svg { width: 22px; height: 22px; }
+  .trust h4 { font-size: 19px; margin-bottom: 6px; letter-spacing: -0.02em; }
+  .trust p { font-size: 15px; color: var(--ink-2); }
+  .disclaimer { margin-top: 24px; font-size: 14px; color: var(--muted); text-align: center; }
+
+  /* Timeline */
+  .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 20px; right: 20px; top: 19px; height: 2px; background: linear-gradient(90deg, var(--magenta), #F5862A, var(--teal)); }
+  .tl { padding-right: 24px; position: relative; }
+  .tl .dot { width: 40px; height: 40px; border-radius: 50%; background: var(--surface); border: 2px solid var(--magenta); display: grid; place-items: center; margin-bottom: 18px; position: relative; }
+  .tl .dot::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--magenta); }
+  .tl.done .dot { background: var(--magenta); }
+  .tl.done .dot::after { background: #fff; }
+  .tl.now .dot { box-shadow: 0 0 0 6px var(--pink-soft); }
+  .tl .date { font-family: "Outfit"; font-weight: 700; font-size: 22px; letter-spacing: -0.02em; }
+  .tl .what { font-weight: 600; margin: 2px 0 6px; }
+  .tl p { font-size: 15px; color: var(--muted); }
+  .callout { margin-top: 40px; display: flex; gap: 18px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--magenta); border-radius: 14px; padding: 22px 24px; }
+  .callout h4 { font-size: 19px; margin-bottom: 6px; letter-spacing: -0.02em; }
+  .callout p { margin: 0; color: var(--ink-2); font-size: 16px; }
+  .groups { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+  .groups span { font-size: 13px; font-weight: 600; background: var(--bg); border: 1px solid var(--line); padding: 4px 10px; border-radius: 999px; }
+
+  /* Submit */
+  .deliverable { display: flex; flex-direction: column; }
+  .deliverable .tag { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--pink-soft); color: var(--magenta-dark); margin-bottom: 14px; }
+  .resource-row { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .resource { display: inline-flex; align-items: center; gap: 10px; padding: 14px 18px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; color: var(--ink); font-weight: 600; }
+  .resource:hover { border-color: var(--magenta); }
+  .resource .arrow { color: var(--magenta); }
+
+  /* Accepted */
+  .rules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .rule { padding: 24px 28px; border-bottom: 1px solid var(--line); }
+  .rule:nth-child(odd) { border-right: 1px solid var(--line); }
+  .rule:nth-last-child(-n+2) { border-bottom: none; }
+  .rule h4 { font-size: 18px; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .rule p { margin: 0; font-size: 16px; color: var(--ink-2); }
+  .idea-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 28px; }
+  .idea-types .card h3 { font-size: 22px; }
+
+  /* Mockups */
+  .mock { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; }
+  .mock-art { height: 300px; display: grid; place-items: center; padding: 22px; }
+  .mock-cap { padding: 20px 22px 24px; border-top: 1px solid var(--line); }
+  .mock-cap .lvl { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .mock-cap h4 { font-size: 20px; letter-spacing: -0.02em; margin: 4px 0 6px; }
+  .mock-cap p { font-size: 15px; color: var(--ink-2); margin: 0; }
+
+  .sketch { background: #FFFDF6; background-image: repeating-linear-gradient(transparent 0 27px, #E8E4D6 27px 28px); font-family: "Caveat", cursive; color: #2A2A3A; }
+  .sk-phone { width: 170px; height: 250px; border: 2.5px solid #2A2A3A; border-radius: 22px 18px 24px 20px; padding: 14px 12px; transform: rotate(-2deg); position: relative; }
+  .sk-line { border: 2px solid #2A2A3A; border-radius: 10px 14px 12px 9px; padding: 3px 8px; font-size: 17px; margin-bottom: 8px; line-height: 1.1; }
+  .sk-btn { border: 2px solid #2A2A3A; border-radius: 999px; text-align: center; font-size: 19px; font-weight: 700; margin-top: 10px; background: rgba(198,4,142,.12); }
+  .sk-note { position: absolute; right: -78px; top: 70px; font-size: 18px; color: var(--magenta); transform: rotate(6deg); width: 80px; line-height: 1; }
+
+  .canva { background: linear-gradient(160deg, #F2EEFF, #FDE7F3); }
+  .cv-screen { width: 200px; background: #fff; border-radius: 18px; box-shadow: 0 18px 40px -18px rgba(20,19,31,.35); padding: 16px; font-size: 12px; }
+  .cv-screen .t { font-family: "Outfit"; font-weight: 700; font-size: 16px; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .cv-screen .s { color: var(--muted); font-size: 11px; margin-bottom: 12px; }
+  .cv-week { display: flex; gap: 4px; margin-bottom: 12px; }
+  .cv-week i { flex: 1; height: 34px; border-radius: 6px; background: var(--pink-soft); }
+  .cv-week i.on { background: var(--magenta); }
+  .cv-week i.mid { background: #EE8BC6; }
+  .cv-item { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid var(--line); }
+  .cv-item::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--teal); flex: none; }
+
+  .ai { background: #13121C; }
+  .ai-screen { width: 210px; border-radius: 18px; background: linear-gradient(180deg, #1E1C2C, #16151F); border: 1px solid #2E2C40; padding: 16px; color: #EDEBF7; font-size: 12px; }
+  .ai-screen .orb { width: 44px; height: 44px; margin: 4px auto 12px; box-shadow: 0 0 40px rgba(232,21,142,.5); }
+  .ai-screen .t { text-align: center; font-family: "Outfit"; font-weight: 600; font-size: 15px; margin-bottom: 12px; }
+  .ai-pill { border: 1px solid #3A3852; border-radius: 999px; padding: 7px 12px; margin-bottom: 7px; text-align: center; color: #C9C6DD; }
+  .ai-pill.on { border-color: var(--magenta); color: #fff; background: rgba(198,4,142,.18); }
+
+  .weak { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .weak-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 28px; border-bottom: 1px solid var(--line); background: var(--bg); }
+  .weak-head h3 { font-size: 22px; }
+  .sev { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; padding: 5px 12px; border-radius: 999px; background: var(--amber-soft); color: var(--amber); }
+  .sev::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .weak dl { margin: 0; display: grid; grid-template-columns: 200px 1fr; }
+  .weak dt, .weak dd { padding: 16px 28px; border-bottom: 1px solid var(--line); margin: 0; }
+  .weak dt { font-weight: 700; font-size: 15px; color: var(--muted); }
+  .weak dd { color: var(--ink-2); }
+  .weak dl > :nth-last-child(-n+2) { border-bottom: none; }
+  .shot { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; background: var(--bg); border: 1px dashed #CFCEDB; border-radius: 10px; padding: 6px 12px; }
+  .sample-note { font-size: 14px; color: var(--muted); margin-top: 14px; }
+
+  /* Judging */
+  .judge-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px; }
+  .rubric .row { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .rubric .row:last-of-type { border-bottom: none; }
+  .rubric .name { font-weight: 700; }
+  .rubric .pts { font-family: "Outfit"; font-weight: 700; font-size: 22px; letter-spacing: -0.02em; }
+  .rubric .bar { grid-column: 1 / -1; height: 8px; background: var(--bg); border-radius: 999px; overflow: hidden; }
+  section.white .rubric .bar { background: #ECEBF3; }
+  .rubric .bar i { display: block; height: 100%; border-radius: 999px; background: var(--magenta); }
+  .rubric .desc { grid-column: 1 / -1; font-size: 14px; color: var(--muted); }
+  .total { display: flex; justify-content: space-between; align-items: baseline; padding-top: 16px; margin-top: 4px; border-top: 2px solid var(--ink); font-family: "Outfit"; font-weight: 700; font-size: 20px; }
+  .judges { display: grid; gap: 14px; margin-bottom: 20px; }
+  .judge { display: flex; align-items: center; gap: 14px; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--pink-soft); display: grid; place-items: center; font-family: "Outfit"; font-weight: 700; color: var(--magenta); flex: none; overflow: hidden; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .judge b { display: block; font-family: "Outfit"; font-size: 18px; letter-spacing: -0.02em; }
+  .judge span { font-size: 14px; color: var(--muted); }
+
+  /* Pitch */
+  .pitch-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 20px; }
+  .stat { background: var(--ink); color: #fff; border-radius: var(--radius); padding: 28px; }
+  .stat .big { font-family: "Outfit"; font-weight: 700; font-size: 56px; letter-spacing: -0.04em; line-height: 1; }
+  .stat .big small { font-size: 22px; margin-left: 4px; color: rgba(255,255,255,.7); }
+  .stat p { margin: 10px 0 0; color: rgba(255,255,255,.75); font-size: 15px; }
+  .stat.pink { background: var(--magenta); }
+  .stat.pink p { color: rgba(255,255,255,.85); }
+
+  /* Schedule */
+  .sched { display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: start; }
+  .slot { display: grid; grid-template-columns: 96px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .slot:first-child { padding-top: 0; }
+  .slot:last-child { border-bottom: none; }
+  .slot time { font-family: "Outfit"; font-weight: 700; font-size: 24px; letter-spacing: -0.03em; color: var(--magenta); }
+  .slot h4 { font-size: 20px; letter-spacing: -0.02em; margin-bottom: 2px; }
+  .slot p { margin: 0; color: var(--muted); font-size: 15px; }
+  .venue .map { height: 200px; border-radius: 14px; margin-bottom: 18px; background: linear-gradient(135deg, var(--pink-soft), #E3EEFF); display: grid; place-items: center; font-weight: 700; color: var(--muted); font-size: 14px; border: 1.5px dashed #CFCEDB; }
+
+  /* Prizes */
+  .prizes { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 16px; align-items: stretch; }
+  .prize { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; }
+  .prize .place { font-family: "Outfit"; font-weight: 700; font-size: 15px; color: var(--muted); letter-spacing: -0.01em; }
+  .prize .val { font-family: "Outfit"; font-weight: 700; font-size: 32px; letter-spacing: -0.04em; margin: 6px 0; }
+  .prize p { font-size: 14px; color: var(--muted); margin: 0; }
+  .prize.first { background: var(--ink); color: #fff; border: none; position: relative; overflow: hidden; }
+  .prize.first::after { content: ""; position: absolute; width: 220px; height: 220px; border-radius: 50%; right: -70px; bottom: -90px; background: var(--orb); opacity: .6; filter: blur(18px); }
+  .prize.first > * { position: relative; z-index: 1; }
+  .prize.first .place { color: rgba(255,255,255,.7); }
+  .prize.first .val { font-size: 40px; }
+  .prize.first p { color: rgba(255,255,255,.8); }
+  .prize.founder { background: var(--pink-soft); border-color: transparent; }
+  .prize.founder .place, .prize.founder .val { color: var(--magenta-dark); }
+  .prize.founder p { color: var(--ink-2); }
+  .everyone { margin-top: 20px; text-align: center; color: var(--ink-2); }
+
+  /* Raffle */
+  .raffle { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; background: linear-gradient(135deg, #2A1033, #14131F 60%); color: #fff; border-radius: 28px; padding: 48px; overflow: hidden; position: relative; }
+  .raffle::before { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; left: -160px; top: -200px; background: var(--orb); opacity: .35; filter: blur(50px); }
+  .raffle > * { position: relative; }
+  .raffle h2 { font-size: clamp(38px, 5vw, 56px); margin: 6px 0 16px; }
+  .raffle .sec-kicker { color: #F59BD2; margin: 0; }
+  .raffle p { color: rgba(255,255,255,.8); }
+  .raffle-steps { display: grid; gap: 12px; }
+  .raffle-steps div { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 16px 18px; }
+  .raffle-steps b { display: block; font-family: "Outfit"; font-size: 17px; margin-bottom: 2px; }
+  .raffle-steps span { font-size: 15px; color: rgba(255,255,255,.75); }
+  .raffle .tbd { background: linear-gradient(transparent 62%, rgba(198,4,142,.35) 62%); border-bottom-color: #F59BD2; }
+
+  /* FAQ */
+  .faq { max-width: 820px; }
+  details { border-bottom: 1px solid var(--line); }
+  details:first-of-type { border-top: 1px solid var(--line); }
+  summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; font-family: "Outfit"; font-weight: 600; font-size: 21px; letter-spacing: -0.02em; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 28px; font-weight: 400; color: var(--magenta); flex: none; transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details .ans { padding: 0 0 22px; color: var(--ink-2); max-width: 680px; }
+  details .ans p:last-child { margin: 0; }
+
+  /* Footer */
+  footer { background: var(--ink); color: #fff; padding: 72px 0 40px; }
+  .foot-cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .foot-cta h2 { font-size: clamp(34px, 5vw, 52px); }
+  .foot-cta .btn-ghost { color: #fff; border-color: rgba(255,255,255,.3); }
+  .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 32px; padding: 40px 0; }
+  .foot-grid h4 { font-size: 14px; font-family: "Figtree"; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 12px; }
+  .foot-grid p, .foot-grid a { color: rgba(255,255,255,.88); font-size: 15px; }
+  .foot-grid a { text-decoration: none; }
+  .foot-grid a:hover { color: #F59BD2; }
+  footer .brand { color: #fff; margin-bottom: 14px; }
+  footer .logo-slot { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.25); color: rgba(255,255,255,.7); }
+  footer .tbd { background: linear-gradient(transparent 62%, rgba(198,4,142,.35) 62%); border-bottom-color: #F59BD2; }
+  .fine { font-size: 13px; color: rgba(255,255,255,.5); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 960px) {
+    nav.links { display: none; }
+    .sol-grid, .judge-grid, .sched, .raffle { grid-template-columns: 1fr; }
+    .hero { padding: 64px 0 64px; }
+    .ticket { grid-template-columns: 1fr 1fr; }
+    .ticket > div:nth-child(2) { border-right: none; }
+    .ticket > div:nth-child(-n+2) { border-bottom: 1.5px dashed var(--line); }
+    .ticket > div:nth-child(3) { border-right: none; grid-column: 1 / -1; border-bottom: 1.5px dashed var(--line); }
+    .ticket > div:last-child { grid-column: 1 / -1; }
+    .grid-3, .trust, .idea-types, .pitch-stats { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr 1fr; row-gap: 32px; }
+    .timeline::before { display: none; }
+    .prizes { grid-template-columns: 1fr 1fr; }
+    .prize.first { grid-column: 1 / -1; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .foot-grid > :first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 16px; }
+    header.top .wrap { height: 64px; }
+    .brand small, .top-actions .btn-ghost { display: none; }
+    .top-actions .btn { padding: 10px 16px; font-size: 15px; }
+    section.block { padding: 72px 0; }
+    .grid-2, .rules, .compare { grid-template-columns: 1fr; }
+    .rule:nth-child(odd) { border-right: none; }
+    .rule:nth-last-child(2) { border-bottom: 1px solid var(--line); }
+    .timeline { grid-template-columns: 1fr; }
+    .weak dl { grid-template-columns: 1fr; }
+    .weak dt { padding-bottom: 0; border-bottom: none; }
+    .weak dd { padding-top: 4px; }
+    .weak dl > :nth-last-child(2) { border-bottom: none; }
+    .slot { grid-template-columns: 72px 1fr; gap: 14px; }
+    .slot time { font-size: 20px; }
+    .raffle { padding: 32px 22px; border-radius: 22px; }
+    .card { padding: 22px; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .sk-note { display: none; }
+    .btn-pink, .btn-ghost.lg { width: 100%; }
+    .steps { font-size: 16px; gap: 6px; }
+    .steps span { padding: 8px 14px; }
+    .ticket { grid-template-columns: 1fr; }
+    .ticket > div { border-right: none !important; border-bottom: 1.5px dashed var(--line); grid-column: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="orb" aria-hidden="true"></span>sol <small>showdown</small></a>
+    <nav class="links" aria-label="Sections">
+      <a href="#submit">What to submit</a>
+      <a href="#judging">Judging</a>
+      <a href="#event">Event night</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="top-actions">
+      <a class="btn btn-ghost" href="https://heysol.app" target="_blank" rel="noopener">try sol</a>
+      <a class="btn btn-dark" href="#register-link-goes-here">register</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Sol<span class="grad">Showdown</span></h1>
+    <div class="steps" aria-label="Use Sol, find what's broken, pitch a fix">
+      <span>Use Sol for two weeks</span><i>→</i><span>Find what's broken</span><i>→</i><span>Pitch a fix</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-pink" href="https://heysol.app" target="_blank" rel="noopener">try sol</a>
+      <a class="btn btn-ghost lg" href="#register-link-goes-here">register</a>
+    </div>
+
+    <div class="ticket">
+      <div><span class="lbl">Submissions due</span><span class="v">Mon, Nov 2<small>Through the submission form</small></span></div>
+      <div><span class="lbl">Showdown</span><span class="v">Tue, Nov 3<small>6:00 PM</small></span></div>
+      <div><span class="lbl">Where</span><span class="v">The Pub<small>Rider University</small></span></div>
+      <div>
+        <span class="lbl">Time left to submit</span>
+        <!-- Counts down to the deadline below; update data-deadline once the exact time is set -->
+        <div class="count" id="countdown" data-deadline="2026-11-02T23:59:00">
+          <div><b data-u="d">–</b><span>days</span></div>
+          <div><b data-u="h">–</b><span>hours</span></div>
+          <div><b data-u="m">–</b><span>min</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="organizers">
+      <p>Organized by the <strong>Brodsky Institute</strong>, supported by <strong>D.A.IS</strong> and <strong>FBLA</strong></p>
+      <div class="logo-row">
+        <!-- Replace each slot's text with <img src="assets/brodsky.png" alt="Brodsky Institute"> -->
+        <span class="logo-slot">Brodsky Institute</span>
+        <span class="logo-slot">D.A.IS</span>
+        <span class="logo-slot">FBLA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WHAT IS SOL -->
+<section class="block white" id="what">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">What is Sol</span>
+      <h2>A conversation that remembers you.</h2>
+      <p>Sol pays attention, remembers what you say and asks good questions, so you can work out what's next. It's built for Rider students, and for the next two weeks you get to tell us where it falls short.</p>
+    </div>
+
+    <div class="sol-grid">
+      <!-- Swap this block for Amber's intro clip: <video src="assets/amber-intro.mp4" controls poster="assets/amber.jpg"></video> -->
+      <div class="video-slot">
+        <div class="play" aria-hidden="true"></div>
+        <h3>Meet Amber, Sol's founder</h3>
+        <p>A short intro to why Sol exists and what she hopes you'll find. <span class="tbd">Video coming soon</span></p>
+      </div>
+      <div class="card">
+        <h3>How it's different</h3>
+        <p class="muted">You've probably used AI for homework help or quick answers. Sol is for something else.</p>
+        <div class="compare">
+          <div class="them"><strong>Most AI tools</strong>Answer one question, then forget you.</div>
+          <div class="us"><strong>Sol</strong>Remembers your goals and asks questions to help you think.</div>
+          <div class="them"><strong>Most AI tools</strong>Built for everyone.</div>
+          <div class="us"><strong>Sol</strong>Being shaped right now by Rider students.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust">
+      <div class="card">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+        <div>
+          <h4>Your data stays yours</h4>
+          <p><span class="tbd">Sol doesn't take or sell student data. (Final wording from Amber.)</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <div>
+          <h4>Is this legit?</h4>
+          <p>Yes. The Brodsky Institute is running the Showdown, and you'll meet the Sol team in person on Nov 3. <a href="#faq">More in the FAQ</a>.</p>
+        </div>
+      </div>
+      <div class="card">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.7c2 .7 3.2 2.6 3.6 5.3"/></svg></span>
+        <div>
+          <h4>Built with real people</h4>
+          <p>Founded by Amber and tested with students. <span class="tbd">Student clips to come.</span></p>
+        </div>
+      </div>
+    </div>
+    <p class="disclaimer"><span class="tbd">Sol is an independent company and is not affiliated with Rider University. (Match the Instagram bio wording.)</span></p>
+  </div>
+</section>
+
+<!-- 3. TIMELINE -->
+<section class="block" id="timeline">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Timeline</span>
+      <h2>Two weeks, start to finish.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl done">
+        <div class="dot"></div>
+        <div class="date">Oct 19</div>
+        <div class="what">Access codes go out</div>
+        <p>Codes go to participating clubs and programs.</p>
+      </div>
+      <div class="tl now">
+        <div class="dot"></div>
+        <div class="date">Oct 19 – Nov 2</div>
+        <div class="what">Explore and build</div>
+        <p>Use Sol, log what breaks, and sketch your fix.</p>
+      </div>
+      <div class="tl">
+        <div class="dot"></div>
+        <div class="date">Mon, Nov 2</div>
+        <div class="what">Submissions due</div>
+        <p>By <span class="tbd">11:59 PM</span>, through the submission form.</p>
+      </div>
+      <div class="tl">
+        <div class="dot"></div>
+        <div class="date">Tue, Nov 3</div>
+        <div class="what">Event and winners</div>
+        <p>Finalists pitch live at 6:00 PM, and winners are announced that night.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div>
+        <h4>Not in one of these groups? You can still play.</h4>
+        <div class="groups"><span>Clubs</span><span>EOP</span><span>Bonner</span><span>Brodsky fellows</span><span>Greek life</span></div>
+        <p><span class="tbd">How to get a code: email Lakshitha or fill out the request form, and we'll send one within a day.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. WHAT YOU SUBMIT -->
+<section class="block white" id="submit">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">What you submit</span>
+      <h2>Three parts, one form.</h2>
+      <p>Find the problems, suggest a fix, and show us what it looks like.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card deliverable">
+        <span class="num">1</span>
+        <span class="tag">Weakness report</span>
+        <h3>5+ issues you found</h3>
+        <p class="muted small">For each one, include:</p>
+        <ul>
+          <li>What you tried</li>
+          <li>What happened</li>
+          <li>Why it matters to students</li>
+          <li>Severity: low, medium or high</li>
+          <li>A screenshot, if you can</li>
+        </ul>
+      </div>
+      <div class="card deliverable">
+        <span class="num">2</span>
+        <span class="tag">Proposal</span>
+        <h3>1–2 ideas to fix it</h3>
+        <p class="muted small">For each idea:</p>
+        <ul>
+          <li>The student problem it solves</li>
+          <li>How it works</li>
+          <li>How we'd know it's working</li>
+        </ul>
+      </div>
+      <div class="card deliverable">
+        <span class="num">3</span>
+        <span class="tag">Mockup or prototype</span>
+        <h3>Show us what it looks like</h3>
+        <p>A hand sketch, a Figma or Canva screen, or an AI-generated UI all count.</p>
+        <p class="muted small">Code is welcome but not required. <a href="#examples">See examples ↓</a></p>
+      </div>
+    </div>
+    <div class="resource-row">
+      <a class="resource" href="#guide-link"><span><span class="tbd">"What to look for" guide</span></span><span class="arrow">→</span></a>
+      <a class="resource" href="#template-link"><span><span class="tbd">Weakness log template</span></span><span class="arrow">→</span></a>
+      <a class="btn btn-pink" href="#submission-form-link">open the submission form</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. WHAT'S ACCEPTED -->
+<section class="block" id="rules">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">What's accepted</span>
+      <h2>Any kind of good idea.</h2>
+    </div>
+    <div class="idea-types">
+      <div class="card"><h3>Technical</h3><p class="muted">New features, fixes and smarter ways for Sol to work.</p></div>
+      <div class="card"><h3>Educational</h3><p class="muted">Ways Sol could help with classes, advising or careers.</p></div>
+      <div class="card"><h3>Business</h3><p class="muted">Ways to get more students using it and keep them coming back.</p></div>
+    </div>
+    <div class="rules">
+      <div class="rule"><h4>File formats</h4><p><span class="tbd">PDF, PNG, JPG, Figma or Canva links, up to 25 MB</span></p></div>
+      <div class="rule"><h4>AI tools for mockups</h4><p><span class="tbd">Allowed. Just tell us which tool you used.</span></p></div>
+      <div class="rule"><h4>Solo or team</h4><p><span class="tbd">To be confirmed</span></p></div>
+      <div class="rule"><h4>Used Sol before Oct 19?</h4><p><span class="tbd">To be confirmed</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. EXAMPLE MOCKUPS -->
+<section class="block white" id="examples">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Example mockups</span>
+      <h2>Any level of polish works.</h2>
+      <p>Judges score the idea, not your design skills. All three of these made-up examples would count.</p>
+    </div>
+    <div class="grid-3">
+      <div class="mock">
+        <div class="mock-art sketch">
+          <div class="sk-phone">
+            <div class="sk-line">Mon: orgo exam!!</div>
+            <div class="sk-line">Wed: essay due</div>
+            <div class="sk-line">Fri: interview</div>
+            <div class="sk-btn">plan my week</div>
+            <div class="sk-note">← sol pulls these from chat</div>
+          </div>
+        </div>
+        <div class="mock-cap">
+          <span class="lvl">Hand sketch · 15 min</span>
+          <h4>Deadline memory</h4>
+          <p>Sol picks up the due dates you mention and helps you plan around them.</p>
+        </div>
+      </div>
+      <div class="mock">
+        <div class="mock-art canva">
+          <div class="cv-screen">
+            <div class="t">Your week with Sol</div>
+            <div class="s">3 check-ins · 2 goals moved forward</div>
+            <div class="cv-week"><i class="on"></i><i class="mid"></i><i></i><i class="on"></i><i class="mid"></i><i></i><i></i></div>
+            <div class="cv-item">Applied to 2 internships</div>
+            <div class="cv-item">Talked to advisor about minor</div>
+            <div class="cv-item">Started orgo review</div>
+          </div>
+        </div>
+        <div class="mock-cap">
+          <span class="lvl">Canva / Figma screen · 1 hr</span>
+          <h4>Weekly recap</h4>
+          <p>A Sunday summary that shows what you got done, so you keep coming back.</p>
+        </div>
+      </div>
+      <div class="mock">
+        <div class="mock-art ai">
+          <div class="ai-screen">
+            <div class="orb"></div>
+            <div class="t">What's on your mind?</div>
+            <div class="ai-pill on">Picking a major</div>
+            <div class="ai-pill">Internship stress</div>
+            <div class="ai-pill">Just need to vent</div>
+          </div>
+        </div>
+        <div class="mock-cap">
+          <span class="lvl">AI-generated UI · 30 min</span>
+          <h4>Topic starters</h4>
+          <p>Tap a starting topic so the first message doesn't feel like a blank page.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="weak">
+      <div class="weak-head">
+        <h3>Sample weakness entry</h3>
+        <span class="sev">Medium severity</span>
+      </div>
+      <dl>
+        <dt>What I tried</dt>
+        <dd>Told Sol on Monday that my orgo exam was Friday, then asked on Wednesday, "what should I focus on this week?"</dd>
+        <dt>What happened</dt>
+        <dd>Sol gave general study tips and never mentioned the exam.</dd>
+        <dt>Why it matters</dt>
+        <dd>Students juggle lots of deadlines. If Sol says it remembers but misses the one thing that matters this week, people stop trusting it.</dd>
+        <dt>Screenshot</dt>
+        <dd><span class="shot">📎 wed-chat.png</span></dd>
+      </dl>
+    </div>
+    <p class="sample-note">These are made-up samples to show the format, not real entries.</p>
+  </div>
+</section>
+
+<!-- 7. HOW JUDGING WORKS -->
+<section class="block" id="judging">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">How judging works</span>
+      <h2>Scored out of 100.</h2>
+      <p>Ties go to the entry with the higher Student impact score.</p>
+    </div>
+    <div class="judge-grid">
+      <div class="card rubric">
+        <div class="row"><span class="name">Student impact</span><span class="pts">30</span><span class="bar"><i style="width:100%"></i></span><span class="desc">Does it solve a real problem students have?</span></div>
+        <div class="row"><span class="name">Quality of weakness findings</span><span class="pts">20</span><span class="bar"><i style="width:66.7%"></i></span><span class="desc">Specific, reproducible and clearly explained</span></div>
+        <div class="row"><span class="name">Feasibility</span><span class="pts">20</span><span class="bar"><i style="width:66.7%"></i></span><span class="desc">Could the Sol team realistically build it?</span></div>
+        <div class="row"><span class="name">Clarity of design</span><span class="pts">15</span><span class="bar"><i style="width:50%"></i></span><span class="desc">Can we tell how it works from your mockup?</span></div>
+        <div class="row"><span class="name">Pitch</span><span class="pts">15</span><span class="bar"><i style="width:50%"></i></span><span class="desc">Clear, convincing and on time (finalists only)</span></div>
+        <div class="total"><span>Total</span><span>100</span></div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>The judges</h3>
+          <div class="judges">
+            <div class="judge"><span class="avatar">A</span><div><b>Amber</b><span>Founder, Sol</span></div></div>
+            <div class="judge"><span class="avatar">B</span><div><b><span class="tbd">Name TBA</span></b><span>Brodsky Institute</span></div></div>
+            <div class="judge"><span class="avatar">F</span><div><b><span class="tbd">Name TBA</span></b><span>Rider faculty</span></div></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:20px">
+          <h3>From entry to finalist</h3>
+          <p>If there are more than about 10 entries, judges invite the top 6–8 to pitch live.</p>
+          <p class="muted">Every report still goes to the Sol team, so whatever you find gets read either way.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. HOW FINALISTS PITCH -->
+<section class="block white" id="pitch">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">How finalists pitch</span>
+      <h2>Short and focused.</h2>
+    </div>
+    <div class="pitch-stats">
+      <div class="stat pink"><div class="big">5<small>min</small></div><p>To pitch your fix</p></div>
+      <div class="stat"><div class="big">2<small>min</small></div><p>Of questions from the judges</p></div>
+      <div class="stat"><div class="big">0</div><p>Need to re-explain everything, since judges read your submission first</p></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Before the event</h3>
+        <ul>
+          <li>Finalists will hear by <span class="tbd">Mon, Nov 2 at 10 PM, by email</span></li>
+          <li>Slides: <span class="tbd">PDF or Google Slides link, 16:9, up to 6 slides</span></li>
+          <li>Send slides to <span class="tbd">the email or form we'll share</span> by <span class="tbd">Tue, Nov 3 at noon</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Have a backup</h3>
+        <p>Live demos sometimes fail. Bring:</p>
+        <ul>
+          <li>A short screen recording of the problem you found</li>
+          <li>Your mockup saved offline (PDF or image)</li>
+        </ul>
+        <p class="muted small">If Sol is down, you can still pitch from those.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. EVENT NIGHT -->
+<section class="block" id="event">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Event night · Tue, Nov 3</span>
+      <h2>What happens on the night.</h2>
+      <p>Anyone can come, whether you submitted or not.</p>
+    </div>
+    <div class="sched">
+      <div class="card">
+        <div class="slot"><time>6:00</time><div><h4>Check-in and food</h4><p>Grab food and enter the costume raffle.</p></div></div>
+        <div class="slot"><time>6:15</time><div><h4>Welcome and Sol overview</h4><p>Amber</p></div></div>
+        <div class="slot"><time>6:30</time><div><h4>The fellowship</h4><p>Brodsky Institute</p></div></div>
+        <div class="slot"><time>6:40</time><div><h4>Finalist pitches</h4><p>5 minutes plus 2 minutes of Q&amp;A each</p></div></div>
+        <div class="slot"><time>7:30</time><div><h4>Judges deliberate</h4><p>Raffle drawing and networking</p></div></div>
+        <div class="slot"><time>7:45</time><div><h4>Winners announced</h4><p>Closing and group photo</p></div></div>
+      </div>
+      <div class="card venue">
+        <!-- Replace with <img src="assets/pub.jpg" alt="The Pub"> -->
+        <div class="map">Photo or map of the Pub</div>
+        <h3>The Pub</h3>
+        <p class="muted">Tue, Nov 3 · Doors open at 6:00 PM</p>
+        <a class="btn btn-dark" href="#register-link-goes-here">register to attend</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. PRIZES -->
+<section class="block white" id="prizes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Prizes</span>
+      <h2>$250 in prizes.</h2>
+      <p>Five Amazon gift cards, funded by the Brodsky Institute.</p>
+    </div>
+    <div class="prizes">
+      <div class="prize first">
+        <span class="place">Grand Prize</span>
+        <span class="val">$100</span>
+        <p>Amazon gift card for the top-scoring entry</p>
+      </div>
+      <div class="prize"><span class="place">Runner-up #1</span><span class="val">$50</span><p>Amazon gift card</p></div>
+      <div class="prize"><span class="place">Runner-up #2</span><span class="val">$25</span><p>Amazon gift card</p></div>
+      <div class="prize"><span class="place">Runner-up #3</span><span class="val">$25</span><p>Amazon gift card</p></div>
+      <div class="prize founder"><span class="place">Founder's Choice</span><span class="val">$50</span><p>Amazon gift card for the idea that best reflects Sol's vision and values</p></div>
+    </div>
+    <p class="everyone">Everyone who submits gets a <span class="tbd">certificate of participation</span> and a thank-you from the Sol team.</p>
+  </div>
+</section>
+
+<!-- 11. COSTUME RAFFLE -->
+<section class="block" id="raffle">
+  <div class="wrap">
+    <div class="raffle">
+      <div>
+        <span class="sec-kicker">Costume raffle</span>
+        <h2>Come dressed up. Win something.</h2>
+        <p>Costumes are optional. If you show up in one, you're entered in the raffle.</p>
+        <p class="small">Prize: <span class="tbd">TBA</span></p>
+      </div>
+      <div class="raffle-steps">
+        <div><b>6:00 PM · Enter at check-in</b><span>Show your costume when you arrive.</span></div>
+        <div><b>~7:30 PM · Drawing</b><span>Winners are drawn while the judges deliberate.</span></div>
+        <div><b>Costume guidelines</b><span><span class="tbd">Keep it campus-appropriate: no masks covering your whole face and no props that look like weapons.</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. FAQ -->
+<section class="block white" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">FAQ</span>
+      <h2>Questions, answered.</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Is this legit?</summary>
+        <div class="ans">
+          <p>Yes. The Sol Showdown is organized by the Brodsky Institute and supported by D.A.IS and FBLA. Codes came through your club or program, not from a random message, and you'll meet the Sol team in person on Nov 3.</p>
+          <p><span class="tbd">Sol is not affiliated with Rider University.</span> If you're unsure about a message, contact Lakshitha directly (details below).</p>
+        </div>
+      </details>
+      <details>
+        <summary>Do I need to know how to code?</summary>
+        <div class="ans"><p>No. A hand sketch, a Canva screen or an AI-generated mockup all work. Code is welcome but never required.</p></div>
+      </details>
+      <details>
+        <summary>Can I use AI tools?</summary>
+        <div class="ans"><p><span class="tbd">Yes, for mockups. Just tell us which tool you used.</span></p></div>
+      </details>
+      <details>
+        <summary>Can I enter as a team?</summary>
+        <div class="ans"><p><span class="tbd">To be confirmed.</span></p></div>
+      </details>
+      <details>
+        <summary>Who owns my ideas?</summary>
+        <div class="ans"><p><span class="tbd">Covered in the participant agreement, which you'll see before you submit. Final wording coming soon.</span></p></div>
+      </details>
+      <details>
+        <summary>Can I share what I see in Sol?</summary>
+        <div class="ans"><p><span class="tbd">Sol is in a private pilot, so please don't post screenshots or details publicly. The participant agreement covers the specifics.</span></p></div>
+      </details>
+      <details>
+        <summary>Can I come to the event without submitting?</summary>
+        <div class="ans"><p>Yes. Come for the food, the pitches and the costume raffle. Just <a href="#register-link-goes-here">register</a> so we know how many people to plan for.</p></div>
+      </details>
+      <details>
+        <summary>I'm not in a listed group. How do I get a code?</summary>
+        <div class="ans"><p><span class="tbd">Email Lakshitha or use the request form and we'll send you one.</span></p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-cta">
+      <h2>Submissions due Mon, Nov 2.</h2>
+      <div class="cta-row">
+        <a class="btn btn-pink" href="https://heysol.app" target="_blank" rel="noopener">try sol</a>
+        <a class="btn btn-ghost lg" href="#register-link-goes-here">register</a>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top"><span class="orb" aria-hidden="true"></span>sol showdown</a>
+        <div class="logo-row">
+          <span class="logo-slot">Brodsky Institute</span>
+          <span class="logo-slot">D.A.IS</span>
+          <span class="logo-slot">FBLA</span>
+        </div>
+      </div>
+      <div>
+        <h4>Questions</h4>
+        <p>Lakshitha, event lead<br><a href="mailto:"><span class="tbd">email@rider.edu</span></a></p>
+      </div>
+      <div>
+        <h4>Follow Sol</h4>
+        <p><a href="#instagram-link"><span class="tbd">@sol-instagram-handle</span></a><br><a href="https://heysol.app" target="_blank" rel="noopener">heysol.app</a></p>
+      </div>
+    </div>
+    <p class="fine"><span class="tbd">Sol is an independent company and is not affiliated with Rider University.</span> Organized by the Brodsky Institute.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var el = document.getElementById("countdown");
+    if (!el) return;
+    var end = new Date(el.dataset.deadline).getTime();
+    function tick() {
+      var ms = Math.max(0, end - Date.now());
+      var d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
+      el.querySelector('[data-u="d"]').textContent = d;
+      el.querySelector('[data-u="h"]').textContent = h;
+      el.querySelector('[data-u="m"]').textContent = m;
+      if (ms === 0) { el.innerHTML = '<b>Closed</b>'; return; }
+      setTimeout(tick, 30000);
+    }
+    tick();
+  })();
+</script>
+</body>
+</html>
