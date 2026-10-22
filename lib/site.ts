@@ -5,7 +5,7 @@ export const site = {
   preSurveyUrl: "https://docs.google.com/forms/d/e/1FAIpQLScxOy3iso_iN0t88qWqlNwBRcPCuoAvfrW1SHaIe79nVqKU1w/viewform?usp=send_form",
   postSurveyUrl: "https://docs.google.com/forms/d/e/1FAIpQLScgrTbaP9TgYHtCQZ0dvI5v-LRiVDoBe5ecUhBq-xa0olE6Pw/viewform",
   registerUrl: "https://dais-website-pink.vercel.app/events/sol-showdown#rsvp",
-  // Paste the submission form link here. While empty, the button shows "coming soon".
+  // Paste the submission form link here. While empty, the button shows "opens Oct 29".
   submissionFormUrl: "",
   instagramUrl: "https://www.instagram.com/heysol.app/",
   instagramHandle: "@heysol.app",

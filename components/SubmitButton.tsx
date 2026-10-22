@@ -6,6 +6,6 @@ export default function SubmitButton() {
   return site.submissionFormUrl ? (
     <a className="btn btn-pink" href={site.submissionFormUrl} target="_blank" rel="noopener">open the submission form</a>
   ) : (
-    <span className="btn btn-disabled" aria-disabled="true">submission form coming soon</span>
+    <span className="btn btn-disabled" aria-disabled="true">submission form opens Oct 29</span>
   );
 }
